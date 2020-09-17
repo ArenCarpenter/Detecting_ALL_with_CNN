@@ -5,8 +5,8 @@ from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.python.training.rmsprop import RMSPropOptimizer
 import os
 
-HEIGHT = 450
-WIDTH = 450
+HEIGHT = 256
+WIDTH = 256
 DEPTH = 3
 NUM_CLASSES = 2
 BATCH_SIZE = 32
@@ -18,7 +18,6 @@ def keras_model_fn(hyperparameters):
 
     model.add(Conv2D(128, kernel_size=(3, 3), input_shape=(HEIGHT, WIDTH, DEPTH), activation="relu", name="inputs",
                      padding="same"))
-    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
     model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
     model.add(MaxPooling2D())
     model.add(Flatten())
