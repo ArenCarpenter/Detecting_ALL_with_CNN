@@ -18,7 +18,11 @@ ALL can be split into 3 distinct subtypes that makes identification difficult, e
 
 Here are some normal cells from our set--
 
-![](Images/normal_1.bmp) | ![](Images/normal_2.bmp) | ![](Images/normal_3.bmp)
+<p float="left">
+  <img src="Images/normal_1.bmp" width="100" />
+  <img src="Images/normal_2.bmp" width="100" /> 
+  <img src="Images/normal_3.bmp" width="100" />
+</p>
 
 ## Data Collection
 
