@@ -16,12 +16,21 @@ ALL can be split into 3 distinct subtypes that makes identification difficult, e
 
 ![](Images/FAB.jpeg)
 
-Here are some normal cells from our set--
+Here are some normal cells from our set:
 
 <p float="left">
-  <img src="Images/normal_1.bmp" width="100" />
-  <img src="Images/normal_2.bmp" width="100" /> 
-  <img src="Images/normal_3.bmp" width="100" />
+  <img src="Images/normal_1.bmp" width="125" />
+  <img src="Images/normal_2.bmp" width="125" /> 
+  <img src="Images/normal_3.bmp" width="125" />
+  <img src="Images/normal_4.bmp" width="125" />
+</p>
+
+Here are some ALL cells from our set:
+<p float="left">
+  <img src="Images/all_1.bmp" width="125" />
+  <img src="Images/all_2.bmp" width="125" /> 
+  <img src="Images/all_3.bmp" width="125" />
+  <img src="Images/all_4.bmp" width="125" />
 </p>
 
 ## Data Collection
