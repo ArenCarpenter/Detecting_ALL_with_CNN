@@ -35,6 +35,21 @@ Here are some ALL cells from our set:
 
 ## Data Collection
 
-Data can be found here:
-https://wiki.cancerimagingarchive.net/display/Public/C_NMC_2019+Dataset%3A+ALL+Challenge+dataset+of+ISBI+2019#4dc5f53338634b35a3500cbed18472e0
+The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 2:1 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. 
+
+Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
+
+Data can be found [here](https://wiki.cancerimagingarchive.net/display/Public/C_NMC_2019+Dataset%3A+ALL+Challenge+dataset+of+ISBI+2019#4dc5f53338634b35a3500cbed18472e0).
+
+
+## Modeling
+
+I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate python script. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
+
+I adopted an iterative approach to modeling based on the CRISP-DM process. Starting with a baseline CNN with a single Conv2D layer, additional layers and blocks of layers (3 blocks of 3 Conv2D layers with MaxPooling layers between) were added to select from maximum validation and testing accuracy. 
+
+My final network architecture is described below in text and visualization. 
+
+
+
 
