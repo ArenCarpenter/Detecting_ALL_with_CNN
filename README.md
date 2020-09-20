@@ -57,6 +57,10 @@ I adopted an iterative approach to modeling based on the CRISP-DM process. Start
 
 My final network architecture is described below in text and visualization. 
 
+## Insights and Recommendations
 
+The model achieved high accuracy of xx, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. 
 
+## Next Steps
 
+Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges.
