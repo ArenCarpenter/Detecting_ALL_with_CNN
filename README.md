@@ -16,6 +16,16 @@ ALL can be split into 3 distinct subtypes that makes identification difficult, e
 
 ![](Images/FAB.jpeg)
 
+## Data Collection
+
+The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 2:1 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. 
+
+Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
+
+Data can be found [here](https://wiki.cancerimagingarchive.net/display/Public/C_NMC_2019+Dataset%3A+ALL+Challenge+dataset+of+ISBI+2019#4dc5f53338634b35a3500cbed18472e0).
+
+## Exploratory Data Analysis
+
 Here are some normal cells from our set:
 
 <p float="left">
@@ -33,21 +43,14 @@ Here are some ALL cells from our set:
   <img src="Images/all_4.bmp" width="150" />
 </p>
 
+### Average Images
+
 Looking at the average image for each class we see that the interior of the cells have too much variation to identify meaningful differences, but we see clearly that ALL cells are much larger on average than normal cells. This should not be surprising as cancerous cells have unregulated growth. 
 
 <p float="left">
   <img src="Images/Average_Normal.png" width="300" />
   <img src="Images/Average_ALL.png" width="300" /> 
 </p>
-
-## Data Collection
-
-The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 2:1 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. 
-
-Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
-
-Data can be found [here](https://wiki.cancerimagingarchive.net/display/Public/C_NMC_2019+Dataset%3A+ALL+Challenge+dataset+of+ISBI+2019#4dc5f53338634b35a3500cbed18472e0).
-
 
 ## Modeling
 
@@ -56,6 +59,10 @@ I utilized the Keras framework in AWS Sagemaker by specifying neural network arc
 I adopted an iterative approach to modeling based on the CRISP-DM process. Starting with a baseline CNN with a single Conv2D layer, additional layers and blocks of layers (3 blocks of 3 Conv2D layers with MaxPooling layers between) were added to select from maximum validation and testing accuracy. 
 
 My final network architecture is described below in text and visualization. 
+
+#### Model Compilation Hyperparameters
+
+I used binary crossentropy for the loss function as this is a binary classification problem, and RMSprop for optimization. 
 
 ## Insights and Recommendations
 
