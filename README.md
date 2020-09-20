@@ -33,6 +33,13 @@ Here are some ALL cells from our set:
   <img src="Images/all_4.bmp" width="150" />
 </p>
 
+Looking at the average image for each class we see that the interior of the cells have too much variation to identify meaningful differences, but we see clearly that ALL cells are much larger on average than normal cells. This should not be surprising as cancerous cells have unregulated growth. 
+
+<p float="left">
+  <img src="Images/Average_Normal.png" width="300" />
+  <img src="Images/Average_ALL.png" width="300" /> 
+</p>
+
 ## Data Collection
 
 The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 2:1 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. 
