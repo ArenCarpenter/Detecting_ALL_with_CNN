@@ -4,6 +4,15 @@ Aren Carpenter
 DS Cohort 062220
 September 2020
 
+### Repository Navigation
+
+001_Load_and_Clean_Images.ipynb // From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
+002_Exploratory_Data_Analysis.ipynb // Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
+003_Modeling.ipynb // Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
+Model_Scripts // Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
+
+The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1lgJ2BSfsK7DATqfkMKr0cNbLKv_MyEpwrUyLg41oASc/edit?usp=sharing).
+
 ## Introduction
 
 Acute Lymphoblastic Leukemia (ALL) is the most common pediatric cancer and the most frequent cause of death from cancer before 20 years of age. In the 1960s ALL had a survival rate of only 10%, but advancements in diagnostic testing and refinements to chemotherapies have have increased survival rates to 90% (in developed countries, that is). ([1](https://www.nejm.org/doi/full/10.1056/NEJMra1400972)) Researchers are attempting a variety of personalized approaches, mainly using epigenetic screenings and genome-wide association studies (GWAS) to identify potential targets for inhibition, to push survival rates even higher. ([2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4567699/), [3](https://www.nature.com/articles/bcj201753)) About 80% of ALL cases are children, but, as Terwilliger and Abdul-Hay note, there is another peak of ALL incidence at 50 years of age and long-term remission rates in the older subset of patients is lower than children, about 30-40%. ([3](https://www.nature.com/articles/bcj201753))
@@ -26,7 +35,7 @@ Data can be found [here](https://wiki.cancerimagingarchive.net/display/Public/C_
 
 ## Exploratory Data Analysis
 
-Here are some normal cells from our set:
+Here are some normal cells from our set. We see spherical, non-clefted cells with homogeneous chromatin and few vacuoles. 
 
 <p float="left">
   <img src="Images/normal_1.bmp" width="150" />
@@ -35,7 +44,8 @@ Here are some normal cells from our set:
   <img src="Images/normal_4.bmp" width="150" />
 </p>
 
-Here are some ALL cells from our set:
+Here are some ALL cells from our set. We see irregularly shaped, clefted cells with heterogeneous chromatin and multiple nucleoli and vacuoles. 
+
 <p float="left">
   <img src="Images/all_1.bmp" width="150" />
   <img src="Images/all_2.bmp" width="150" /> 
