@@ -37,7 +37,7 @@ def keras_model_fn(hyperparameters):
 
     model.add(Dense(256, activation="relu"))
     model.add(Dropout(0.25))
-    model.add(Dense(1, activation="sigmoid"))
+    model.add(Dense(2, activation="softmax"))
 
     opt = RMSPropOptimizer(learning_rate=hyperparameters['learning_rate'], decay=hyperparameters['decay'])
 
