@@ -80,4 +80,10 @@ The model achieved high accuracy of xx, allowing it to be a useful tool for iden
 
 ## Next Steps
 
+### Model Improvements
+
+Ways to improve the model via feature engineering or hyperparameter tuning.
+
+### Product Improvements
+
 Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges.
