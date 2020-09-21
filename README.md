@@ -1,15 +1,15 @@
 # Detecting Acute Lymphoblastic Leukemia (ALL) with a Convolutional Neural Network
 
 Aren Carpenter 
+
 DS Cohort 062220
-September 2020
 
 ### Repository Navigation
 
-- 001_Load_and_Clean_Images.ipynb // From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
-- 002_Exploratory_Data_Analysis.ipynb // Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
-- 003_Modeling.ipynb // Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
-- Model_Scripts // Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
+- **001_Load_and_Clean_Images.ipynb** // From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
+- **002_Exploratory_Data_Analysis.ipynb** // Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
+- **003_Modeling.ipynb** // Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
+- **Model_Scripts** // Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
 
 The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1lgJ2BSfsK7DATqfkMKr0cNbLKv_MyEpwrUyLg41oASc/edit?usp=sharing).
 
