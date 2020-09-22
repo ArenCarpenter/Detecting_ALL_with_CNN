@@ -70,11 +70,11 @@ I utilized the Keras framework in AWS Sagemaker by specifying neural network arc
 
 I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class would have an accuracy of 57%. I created a Baseline model with a single Conv2D layer and a single Dense layer which had an accuracy of 68%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
 
-The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1 architecture with 5 total convolutions. Dropout layers of 25% were added after MaxPooling layers to combat overfitting. 
+The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x1x1 architecture with 4 total convolutions. Dropout layers of 25% were added after MaxPooling and Dense layers to combat overfitting. 
 
 Final network architecture:
 
-![]()
+![Final Model Architecture](Images/Viz_2x1x1C1D_model.png)
 
 #### Model Compilation Hyperparameters
 
