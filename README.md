@@ -31,7 +31,7 @@ The data consists of 10,000+ images of single-cell microscopy acute lymphoblasti
 
 Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
 
-Data can be found [here](https://wiki.cancerimagingarchive.net/display/Public/C_NMC_2019+Dataset%3A+ALL+Challenge+dataset+of+ISBI+2019#4dc5f53338634b35a3500cbed18472e0).
+Data can be found [here](https://app.box.com/s/xeclwwd2xep9ntljtgyptmt4k5wone9n).
 
 ## Exploratory Data Analysis
 
@@ -64,7 +64,7 @@ Looking at the average image for each class we see that the interior of the cell
 
 ## Modeling
 
-*I used this [post](https://blog.betomorrow.com/keras-in-the-cloud-with-amazon-sagemaker-67cf11fb536) from Paul Breton and the corresponding GitHub [repo](https://github.com/Pravez/KerasSageMaker) for guidance on utilizing Keras with Sagemaker.*  
+> *I used this [post](https://blog.betomorrow.com/keras-in-the-cloud-with-amazon-sagemaker-67cf11fb536) from Paul Breton and the corresponding GitHub [repo](https://github.com/Pravez/KerasSageMaker) for guidance on utilizing Keras with Sagemaker.*  
 
 I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate python script. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
 

@@ -16,8 +16,15 @@ INPUT_TENSOR_NAME = "inputs_input" # According to Amazon, needs to match the nam
 def keras_model_fn(hyperparameters):
     model = Sequential()
 
-    model.add(Conv2D(32, kernel_size=(3, 3), input_shape=(HEIGHT, WIDTH, DEPTH), activation="relu", name="inputs"))
+    model.add(Conv2D(64, kernel_size=(3, 3), input_shape=(HEIGHT, WIDTH, DEPTH), activation="relu", name="inputs",
+                     padding="same"))
+    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
     model.add(MaxPooling2D())
+
+    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+    model.add(MaxPooling2D())
+
+    model.add(Conv2D(96, kernel_size=(3, 3), activation="relu", padding="same"))
     model.add(Flatten())
 
     model.add(Dense(256, activation="relu"))
