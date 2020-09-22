@@ -64,6 +64,8 @@ Looking at the average image for each class we see that the interior of the cell
 
 ## Modeling
 
+*I used this [post](https://blog.betomorrow.com/keras-in-the-cloud-with-amazon-sagemaker-67cf11fb536) from Paul Breton and the corresponding GitHub [repo](https://github.com/Pravez/KerasSageMaker) for guidance on utilizing Keras with Sagemaker.*  
+
 I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate python script. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
 
 I adopted an iterative approach to modeling based on the CRISP-DM process. Starting with a baseline CNN with a single Conv2D layer, additional layers and blocks of layers (3 blocks of 3 Conv2D layers with MaxPooling layers between) were added to select from maximum validation and testing accuracy. 
