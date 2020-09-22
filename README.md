@@ -66,15 +66,19 @@ Looking at the average image for each class we see that the interior of the cell
 
 > *I used this [post](https://blog.betomorrow.com/keras-in-the-cloud-with-amazon-sagemaker-67cf11fb536) from Paul Breton and the corresponding GitHub [repo](https://github.com/Pravez/KerasSageMaker) for guidance on utilizing Keras with Sagemaker.*  
 
-I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate python script. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
+I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate Python script located in the Model_Scripts directory. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
 
-I adopted an iterative approach to modeling based on the CRISP-DM process. Starting with a baseline CNN with a single Conv2D layer, additional layers and blocks of layers (3 blocks of 3 Conv2D layers with MaxPooling layers between) were added to select from maximum validation and testing accuracy. 
+I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class would have an accuracy of 57%. I created a Baseline model with a single Conv2D layer and a single Dense layer which had an accuracy of 68%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
 
-My final network architecture is described below in text and visualization. 
+The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1 architecture with 5 total convolutions. Dropout layers of 25% were added after MaxPooling layers to combat overfitting. 
+
+Final network architecture:
+
+![]()
 
 #### Model Compilation Hyperparameters
 
-I used binary crossentropy for the loss function as this is a binary classification problem, and RMSprop for optimization. 
+I used binary crossentropy for the loss function as this is a binary classification problem, and RMSprop for optimization. The learning rate was set to 0.001 with a decay of 0.0001.
 
 ## Insights and Recommendations
 
