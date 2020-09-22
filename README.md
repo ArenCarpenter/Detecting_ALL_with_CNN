@@ -1,15 +1,17 @@
 # Detecting Acute Lymphoblastic Leukemia (ALL) with a Convolutional Neural Network
 
-Aren Carpenter 
+**Aren Carpenter** 
 
 DS Cohort 062220
 
 ### Repository Navigation
 
-- **001_Load_and_Clean_Images.ipynb** // From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
-- **002_Exploratory_Data_Analysis.ipynb** // Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
-- **003_Modeling.ipynb** // Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
-- **Model_Scripts** // Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
+- **001_Load_and_Clean_Images.ipynb**: From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
+- **002_Exploratory_Data_Analysis.ipynb**: Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
+- **003_Modeling.ipynb**: Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
+- **Model_Scripts**: Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
+
+One should run 001_Load_and_Clean_Images and 002_EDA in a local notebook to create directories locally for use in EDA, but one must use AWS Sagemaker for the 003_Modeling file to work. Individual models are run by calling a script from the Modeling_Scripts folder in the 003_Modeling file. 
 
 The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1lgJ2BSfsK7DATqfkMKr0cNbLKv_MyEpwrUyLg41oASc/edit?usp=sharing).
 
@@ -31,7 +33,7 @@ The data consists of 10,000+ images of single-cell microscopy acute lymphoblasti
 
 Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
 
-Data can be found [here](https://app.box.com/s/xeclwwd2xep9ntljtgyptmt4k5wone9n).
+Data can be found [here](https://app.box.com/s/xeclwwd2xep9ntljtgyptmt4k5wone9n). It was sourced from the University of Arkansas for Medical Sciences (UAMS) study on ALL microscopy. 
 
 ## Exploratory Data Analysis
 
