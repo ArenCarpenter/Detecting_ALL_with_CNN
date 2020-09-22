@@ -72,9 +72,9 @@ I adopted an iterative approach to modeling based on the CRISP-DM process. A dum
 
 The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x1x1 architecture with 4 total convolutions. Dropout layers of 25% were added after MaxPooling and Dense layers to combat overfitting. 
 
-Final network architecture:
+#### Final network architecture
 
-![Final Model Architecture](Images/Viz_2x1x1C1D_model.png)
+![](Images/Viz_2x1x1C1D_model.png)
 
 #### Model Compilation Hyperparameters
 
@@ -82,14 +82,14 @@ I used binary crossentropy for the loss function as this is a binary classificat
 
 ## Insights and Recommendations
 
-The model achieved high accuracy of xx, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. 
+The model achieved an accuracy of 84%, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. As diagnosing ALL is difficult even for humans, having a robust, accurate verification model could improve the speed and rigor of diagnosis. Due to ALL being an acute leukemia, it is especially vital that it is consistently identified early, left untreated ALL can kill within a few weeks or months. 
 
 ## Next Steps
 
 ### Model Improvements
 
-Ways to improve the model via feature engineering or hyperparameter tuning.
+There are several potential avenues for improvement for this model. I will try the Adam optimizer, which adds a sense of momentum and bias-correction to the gradient calculated by RMSprop. Batch Normalization could also be used to increase the rate of convergence during training, allowing for more epochs of training in the same time frame. I could also implement Early Stopping and Model Checkpoints to combat overfitting by allowing the model to stop training once a threshold of overfitting has been reached. I experimented with several levels of Dropout, settling on 25%, but further investigation could yield better results. 
 
 ### Product Improvements
 
-Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges.
+Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges within an image could greatly improve the model's usability. Additionally, deploying the model and allowing for live-integration of new imaging would keep the model as up-to-date as possible. 
