@@ -16,14 +16,30 @@ INPUT_TENSOR_NAME = "inputs_input" # According to Amazon, needs to match the nam
 def keras_model_fn(hyperparameters):
     model = Sequential()
 
-    model.add(Conv2D(128, kernel_size=(3, 3), input_shape=(HEIGHT, WIDTH, DEPTH), activation="relu", name="inputs",
+    model.add(Conv2D(96, kernel_size=(3, 3), input_shape=(HEIGHT, WIDTH, DEPTH), activation="relu", name="inputs",
                      padding="same"))
+    model.add(MaxPooling2D())
+    model.add(Dropout(0.25))
+
+    model.add(Conv2D(96, kernel_size=(3, 3), activation="relu", padding="same"))
+    model.add(MaxPooling2D())
+    model.add(Dropout(0.25))
+
+    model.add(Conv2D(96, kernel_size=(3, 3), activation="relu", padding="same"))
+    model.add(MaxPooling2D())
+    model.add(Dropout(0.25))
+    
     model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
     model.add(MaxPooling2D())
+    model.add(Dropout(0.25))
+    
+    model.add(Conv2D(64, kernel_size=(3, 3), activation="relu", padding="same"))
+    model.add(MaxPooling2D())
+    model.add(Dropout(0.25))
     model.add(Flatten())
 
     model.add(Dense(256, activation="relu"))
-    model.add(Dense(256, activation="relu"))
+    model.add(Dropout(0.25))
     model.add(Dense(2, activation="softmax"))
 
     opt = RMSPropOptimizer(learning_rate=hyperparameters['learning_rate'], decay=hyperparameters['decay'])
