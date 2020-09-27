@@ -8,10 +8,11 @@ DS Cohort 062220
 
 - **001_Load_and_Clean_Images.ipynb**: From downloading images, split into folder hierarchy of normal and all subdirectories in train/test/validation superdirectories.
 - **002_Exploratory_Data_Analysis.ipynb**: Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
-- **003_Modeling.ipynb**: Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
+- **003_Modeling_AWS.ipynb**: Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
+- **004_Modeling_Local.ipynb**: CPU-based local modeling with Keras framework
 - **Model_Scripts**: Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
 
-One should run 001_Load_and_Clean_Images and 002_EDA in a local notebook to create directories locally for use in EDA, but one must use AWS Sagemaker for the 003_Modeling file to work. Individual models are run by calling a script from the Modeling_Scripts folder in the 003_Modeling file. 
+One should run 001_Load_and_Clean_Images and 002_EDA in a local notebook to create directories locally for use in EDA, but one must use AWS Sagemaker for the 003_Modeling_AWS file to work. Individual models are run by calling a script from the Modeling_Scripts folder in Sagemaker. Local models can be run via the Keras framework using 004_Modeling_Local. 
 
 The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1lgJ2BSfsK7DATqfkMKr0cNbLKv_MyEpwrUyLg41oASc/edit?usp=sharing).
 
