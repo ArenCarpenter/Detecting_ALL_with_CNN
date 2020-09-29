@@ -10,11 +10,11 @@ DS Cohort 062220
 - **002_Exploratory_Data_Analysis.ipynb**: Creating visualizations of representative images, mean images, and class imbalance, in addition to model visuals.
 - **003_Modeling_AWS.ipynb**: Script for utilizing AWS SageMaker training instances and accessing AWS S3 buckets for storing images.
 - **004_Modeling_Local.ipynb**: CPU-based local modeling with Keras framework
-- **Model_Scripts**: Directory for defining Keras model architectures as python scripts to be called in the Modeling.ipynb. 
+- **Model_Scripts**: Directory for defining Keras model architectures as python scripts to be called in the 003_Modeling_AWS.ipynb. 
 
 One should run 001_Load_and_Clean_Images and 002_EDA in a local notebook to create directories locally for use in EDA, but one must use AWS Sagemaker for the 003_Modeling_AWS file to work. Individual models are run by calling a script from the Modeling_Scripts folder in Sagemaker. Local models can be run via the Keras framework using 004_Modeling_Local. 
 
-The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1lgJ2BSfsK7DATqfkMKr0cNbLKv_MyEpwrUyLg41oASc/edit?usp=sharing).
+The slide deck for this project can be found [here](https://docs.google.com/presentation/d/1Ghsj7xBMBZUB8QsEuey53VU2La74BctSShgnL4ZN4eo/edit?usp=sharing).
 
 ## Introduction
 
@@ -75,7 +75,7 @@ I adopted an iterative approach to modeling based on the CRISP-DM process. A dum
 
 The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1x1 architecture with 6 total convolutions. Dropout layers and Batch Normalization were added after MaxPooling and Dense layers to combat overfitting, but were not present in the final model. 
 
-#### Final network architecture
+#### Final Network Architecture
 
 ![](Images/Viz_2x2x1x1C1D_model.png)
 
@@ -124,8 +124,8 @@ The model achieved an accuracy of 84%, allowing it to be a useful tool for ident
 
 ### Model Improvements
 
-There are several potential avenues for improvement for this model. I will try the Adam optimizer, which adds a sense of momentum and bias-correction to the gradient calculated by RMSprop. Batch Normalization could also be used to increase the rate of convergence during training, allowing for more epochs of training in the same time frame. I could also implement Early Stopping and Model Checkpoints to combat overfitting by allowing the model to stop training once a threshold of overfitting has been reached. I experimented with several levels of Dropout, settling on 25%, but further investigation could yield better results. 
+There are several potential avenues for improvement for this model. I attempted to use the Adam optimizer, which adds a sense of momentum and bias-correction to the gradient calculated by RMSprop, and Batch Normalization to improve model performance, though it did help modeling thus far. I could also implement Early Stopping and Model Checkpoints to combat overfitting by allowing the model to stop training once a threshold of overfitting has been reached. I experimented with several levels of Dropout, settling on 25%, but further investigation could yield better results. 
 
 ### Product Improvements
 
-Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges within an image could greatly improve the model's usability. Additionally, deploying the model and allowing for live-integration of new imaging would keep the model as up-to-date as possible. 
+Model interpretability is often as or more important than model accuracy, especially for medical diagnostic needs. It is very important in real-world applications that a doctor can see why the model has reached a certain decision. To that end, building an image segmentation model that identifies and marks important features, such as presence and number of vaculoes, non-spherical cells, or clefted edges within an image could greatly improve the model's usability. Additionally, deploying the model and allowing for live-integration of new imaging would keep the model up-to-date. 
