@@ -99,6 +99,16 @@ Baseline | 0.6875 | 2.39
 4x1C1D | 0.68775 | 3.69
 2x2x1x1C1D | 0.84 | 1.3986
 
+#### Misclassified Images
+
+Here we see an image the model misclassified as Normal when it was actually ALL.
+
+![](Images/Misclass_ALL_as_Neg.png)
+
+Here we see an image the model misclassified as ALL when it was actually Normal. 
+
+![](Images/Misclass_Norm_as_Pos.png)
+
 ## Insights and Recommendations
 
 The model achieved an accuracy of 84%, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. As diagnosing ALL is difficult even for humans, having a robust, accurate verification model could improve the speed and rigor of diagnosis. Due to ALL being an acute leukemia, it is especially vital that it is consistently identified early, left untreated it can kill within a few weeks or months. 
