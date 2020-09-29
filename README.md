@@ -71,11 +71,9 @@ Looking at the average image for each class we see that the interior of the cell
 
 I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate Python script located in the Model_Scripts directory. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
 
-The most successful models were identified and then run in a separate notebook with fewer epochs to generate visualizations, such as confusion matrices and mis-classified images, for further explainability. 
+I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class had an accuracy of 57%. I created a Vanilla model with a single Conv2D layer and a single Dense layer which had an accuracy of 68%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
 
-I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class had an accuracy of 57%. I created a Baseline model with a single Conv2D layer and a single Dense layer which had an accuracy of 68%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
-
-The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x1x1 architecture with 4 total convolutions. Dropout layers of 25% were added after MaxPooling and Dense layers to combat overfitting. 
+The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1x1 architecture with 6 total convolutions. Dropout layers and Batch Normalization were added after MaxPooling and Dense layers to combat overfitting, but were not present in the final model. 
 
 #### Final network architecture
 
@@ -91,23 +89,32 @@ A selection of my iterative modeling process with accuracy and loss metrics.
 
 Model | Accuracy | Loss
 ------------ | ------------- | ------------
-Baseline | 0.6875 | 2.39
-2x1x1C1D with Dropout | 0.84375 | 1.5263
+Dummy | 0.57 | 
+Vanilla | 0.6875 | 2.39
+2x2x1x1C1D | 0.84375 | 1.3986
+2x1x1C1D with Dropout | 0.84 | 1.5263
 2x2x1C1D with Dropout | 0.8125 | 1.9057
 3x3C1D with Dropout | 0.6875 | 3.6557
 3x2C2D with Dropout | 0.625 | 5.3753
 4x1C1D | 0.68775 | 3.69
-2x2x1x1C1D | 0.84 | 1.3986
+
+#### Model Deployment
+
+The best performing model was deployed using AWS Endpoints in order to load in not-yet-seen images from the testing set in order to generate predictions. The deployment is located in the 003_Modeling_AWS notebook under model training.
 
 #### Misclassified Images
 
-Here we see an image the model misclassified as Normal when it was actually ALL.
+Here we see an image the model misclassified as Normal when it was actually ALL. The model is apparently responding to the lack of interior vacuoles and clefting as well as a dense chromatin to classify as normal. The irregular shape should have shown that it was ALL. 
 
-![](Images/Misclass_ALL_as_Neg.png)
+<p float="left">
+  <img src="Images/Misclass_ALL_as_Neg.png" width="300" />
+</p>
 
-Here we see an image the model misclassified as ALL when it was actually Normal. 
+Here we see an image the model misclassified as ALL when it was actually Normal. The model is likely responding to the irregular cell outline as well as the lighter areas in the interior that suggest vacuoles to classify it as ALL. This is definitely a challenging cell to correctly sort.
 
-![](Images/Misclass_Norm_as_Pos.png)
+<p float="left">
+  <img src="Images/Misclass_Norm_as_Pos.png" width="300" />
+</p>
 
 ## Insights and Recommendations
 
