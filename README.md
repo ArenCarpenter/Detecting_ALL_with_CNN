@@ -75,6 +75,8 @@ I adopted an iterative approach to modeling based on the CRISP-DM process. A dum
 
 The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1x1 architecture with 6 total convolutions. Dropout layers and Batch Normalization were added after MaxPooling and Dense layers to combat overfitting, but were not present in the final model. 
 
+I attempted to use recall as a secondary metric for model selection, however this pushed the model to always selecting ALL for images and pushed the model accuracy down to the dummy classifier. I thus decided to drop recall and focus on accuracy. With recall so high and accuracy sacrificed the model would be useless as a tool because all images would have to be reviewed by a human physician anyway, negating the benefits of the model.
+
 #### Final Network Architecture
 
 ![](Images/Viz_2x2x1x1C1D_model.png)
