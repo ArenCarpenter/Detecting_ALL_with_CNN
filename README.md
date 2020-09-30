@@ -112,7 +112,7 @@ Here we see an image the model misclassified as Normal when it was actually ALL.
   <img src="Images/Misclass_ALL_as_Neg.png" width="300" />
 </p>
 
-Here we see an image the model misclassified as ALL when it was actually Normal. The model is likely responding to the irregular cell outline as well as the lighter areas in the interior that suggest vacuoles to classify it as ALL. This is definitely a challenging cell to correctly sort.
+Here we see an image the model misclassified as ALL when it was actually Normal. The model is likely responding to the irregular cell outline as well as the lighter, heterogeneous areas in the interior that suggest vacuoles or unpacked chromatin to classify it as ALL. This is definitely a challenging cell to correctly sort.
 
 <p float="left">
   <img src="Images/Misclass_Norm_as_Pos.png" width="300" />
