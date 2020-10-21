@@ -30,7 +30,7 @@ ALL can be split into 3 distinct subtypes that makes identification difficult, e
 
 ## Data Collection
 
-The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 2:1 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. Thus, training was completed with 4,000 images with a 57:43 class imbalance. 
+The data consists of 10,000+ images of single-cell microscopy acute lymphoblastic leukemia and normal lymphoblasts with a class imbalance of about 1:2 ALL to normal. Having enough images and computing resources without using all images, I decided to downsample the positive ALL class to manage class imbalance. Thus, training was completed with 4,000 images with a 55:45 class imbalance. The testing set remained imbalanced (3:10 ALL to normal) to more accurately evaluate the model in a real-world setting.
 
 Images are 450x450 RGB images stored as .bmp files, a raster graphics bitmap which stores images as 2D matrices.
 
@@ -71,11 +71,11 @@ Looking at the average image for each class we see that the interior of the cell
 
 I utilized the Keras framework in AWS Sagemaker by specifying neural network architecture and compilation hyperparameters in a separate Python script located in the Model_Scripts directory. Training was accomplished in a ml.m4.xlarge notebook instance allowing for hundreds of epochs in a tractable training time. 
 
-I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class had an accuracy of 57%. I created a Vanilla model with a single Conv2D layer and a single Dense layer which had an accuracy of 68%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
+I adopted an iterative approach to modeling based on the CRISP-DM process. A dummy classifier predicting the majority class had an accuracy of 31%. I created a Vanilla model with a single Conv2D layer and a single Dense layer which had an accuracy of 52% and recall of 33%, already better than the dummy. I then created successively larger and more complex architectures by adding additional Conv2D layers and blocks of layers separated by MaxPooling layers. 
 
-The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2x1x1 architecture with 6 total convolutions. Dropout layers and Batch Normalization were added after MaxPooling and Dense layers to combat overfitting, but were not present in the final model. 
+I used Recall as my main metric because, like in most medical imaging, the outcome of a false negative is much worse for the patient than a false positive. It is better to over-predict ALL and have followup procedures to confirm or not, rather than predicting no ALL and being wrong. 
 
-I attempted to use recall as a secondary metric for model selection, however this pushed the model to always selecting ALL for images and pushed the model accuracy down to the dummy classifier. I thus decided to drop recall and focus on accuracy. With recall so high and accuracy sacrificed the model would be useless as a tool because all images would have to be reviewed by a human physician anyway, negating the benefits of the model.
+The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2 architecture with 4 total convolutions. Dropout layers (of .25) improved the model's testing performance as it was not able to rely on a few specific nodes when predicting. 
 
 #### Final Network Architecture
 
@@ -87,18 +87,16 @@ I used binary crossentropy for the loss function as this is a binary classificat
 
 #### Model Evaluation
 
-A selection of my iterative modeling process with accuracy and loss metrics. 
+A selection of my iterative modeling process with accuracy and loss metrics. I kept the class imbalance in the testing set to ensure my model can handle an imbalance more representative of real world applications.  
 
-Model | Accuracy | Loss
------------- | ------------- | ------------
-Dummy | 0.57 | 
-Vanilla | 0.6875 | 2.39
-2x2x1x1C1D | 0.84375 | 1.3986
-2x1x1C1D with Dropout | 0.84 | 1.5263
-2x2x1C1D with Dropout | 0.8125 | 1.9057
-3x3C1D with Dropout | 0.6875 | 3.6557
-3x2C2D with Dropout | 0.625 | 5.3753
-4x1C1D | 0.68775 | 3.69
+Model | Accuracy | Recall | Loss
+---------- | ----------- | ---------- | ----------
+1C1D                 | 0.5164 | 0.3272 | 1.2477
+2C1D                 | 0.5744 | 0.4676 | 0.8072
+2x2x1C2D             | 0.5259 | 0.3688 | 0.8977
+2x2x1x1C1D Adam      | 0.5248 | 0.3981 | 0.8501
+2C3D                 | 0.5438 | 0.4738 | 0.9085
+**2x2C1D Dropout(0.25)** | 0.5767 | **0.9592** | 0.7373
 
 #### Model Deployment
 
@@ -120,13 +118,13 @@ Here we see an image the model misclassified as ALL when it was actually Normal.
 
 ## Insights and Recommendations
 
-The model achieved an accuracy of 84%, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. As diagnosing ALL is difficult even for humans, having a robust, accurate verification model could improve the speed and rigor of diagnosis. Due to ALL being an acute leukemia, it is especially vital that it is consistently identified early, left untreated it can kill within a few weeks or months. 
+The model achieved a recall of 96% on the imbalanced test set, allowing it to be a useful tool for identifying ALL in novel cases. As blood sample microscopy is already the default diagnostic test for ALL, this model could easily be used to verify a human physician or to flag cases that the model is not confident in for further review. As diagnosing ALL is difficult even for humans, having a robust, accurate verification model could improve the speed and rigor of diagnosis. Due to ALL being an acute leukemia, it is especially vital that it is consistently identified early, left untreated it can kill within a few weeks or months. 
 
 ## Next Steps
 
 ### Model Improvements
 
-There are several potential avenues for improvement for this model. I attempted to use the Adam optimizer, which adds a sense of momentum and bias-correction to the gradient calculated by RMSprop, and Batch Normalization to improve model performance, though it did help modeling thus far. I could also implement Early Stopping and Model Checkpoints to combat overfitting by allowing the model to stop training once a threshold of overfitting has been reached. I experimented with several levels of Dropout, settling on 25%, but further investigation could yield better results. 
+There are several potential avenues for improvement for this model. I attempted to use the Adam optimizer, which adds a sense of momentum and bias-correction to the gradient calculated by RMSprop, and Batch Normalization to improve model performance, though it did not help modeling thus far. I could also implement Early Stopping and Model Checkpoints to combat overfitting by allowing the model to stop training once a threshold of overfitting has been reached. I experimented with several levels of Dropout, settling on 25%, but further investigation could yield better results. 
 
 ### Product Improvements
 
