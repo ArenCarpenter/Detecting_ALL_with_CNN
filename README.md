@@ -79,7 +79,7 @@ The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not th
 
 #### Final Network Architecture
 
-![](Images/Viz_2x2x1x1C1D_model.png)
+![](Images/2x2C1Dsum.png)
 
 #### Model Compilation Hyperparameters
 
