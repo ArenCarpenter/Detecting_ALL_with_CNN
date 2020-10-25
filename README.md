@@ -78,6 +78,8 @@ I used Recall as my main metric because, like in most medical imaging, the outco
 
 The most complex had 9 convolutions in 3 blocks of 3 layers, but this was not the most successful model as it appeared to overfit our training data. It became clear that deep, but narrow blocks were achieving higher metrics than wider blocks. The best model was a 2x2 architecture with 4 total convolutions. Dropout layers (of .25) improved the model's testing performance as it was not able to rely on a few specific nodes when predicting. 
 
+Transfer learning using a selection of pre-trained models on ImageNet were used to some success. Recall was on average higher than custom models, however no transfer learning model was able to beat the best performing custom model. 
+
 #### Final Network Architecture
 
 ![](Images/2x2C1Dsum.png)
